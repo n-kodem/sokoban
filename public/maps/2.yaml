@@ -1,4 +1,11 @@
 name: "Mapa 2"
+tiles: {
+  "wall": "W",
+  "floor": "F",
+  "player": "P",
+  "water": "M",
+  "treasure": "T"
+}
 map: [
   "WWWWWWWWWWW",
   "WFFFPWFFFWW",

@@ -39,12 +39,25 @@ class Map extends React.Component {
         if (!data) {
             return <div>Loading...</div>;
         }
-
+        const table = data.map.map((row) => {
+            console.log(row);
+            return <tr>{
+                row.toString().split('').map((cell) => {
+                    return <td>{cell}</td>;
+                })
+            }</tr>;
+        });
         return (
             <div>
                 <button onClick={backToLevelSelect}>Back to Level Selection</button>
                 <h1>{data.name}</h1>
-                <p>{data.map.join("\n")}</p>
+                <table><tbody>
+                {
+                    table
+                }
+                </tbody>
+
+                </table>
             </div>
         );
     }

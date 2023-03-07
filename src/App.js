@@ -29,7 +29,7 @@ function App() {
 
     return (
         <div>
-            {isLevelSelectionDisplayed ? <LevelSelection onLevelSelect={handleLevelSelect} /> : <Map level={selectedLevel} onBackToLevelSelect={handleBackToLevelSelect} />}
+            {isLevelSelectionDisplayed ? <LevelSelection onLevelSelect={handleLevelSelect} /> : <Map {...{ level: selectedLevel, onBackToLevelSelect: handleBackToLevelSelect }} />}
         </div>
     );
 }
