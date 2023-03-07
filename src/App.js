@@ -1,27 +1,37 @@
 import logo from './logo.svg';
 import './App.css';
 import Map from "./main/mapGenerator";
-import React from 'react';
+import React, { useState } from 'react';
+
+function LevelSelection(props) {
+    return (
+        <div>
+            <button onClick={() => props.onLevelSelect(1)}>Level 1</button>
+            <button onClick={() => props.onLevelSelect(2)}>Level 2</button>
+            <button onClick={() => props.onLevelSelect(3)}>Level 3</button>
+        </div>
+    );
+}
+
 function App() {
-  return (
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Edit <code>src/App.js</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    // </div>
-      <Map level={1}/>
-  );
+    const [selectedLevel, setSelectedLevel] = useState(null);
+    const [isLevelSelectionDisplayed, setIsLevelSelectionDisplayed] = useState(true);
+
+    function handleLevelSelect(level) {
+        setSelectedLevel(level);
+        setIsLevelSelectionDisplayed(false);
+    }
+
+    function handleBackToLevelSelect() {
+        setSelectedLevel(null);
+        setIsLevelSelectionDisplayed(true);
+    }
+
+    return (
+        <div>
+            {isLevelSelectionDisplayed ? <LevelSelection onLevelSelect={handleLevelSelect} /> : <Map level={selectedLevel} onBackToLevelSelect={handleBackToLevelSelect} />}
+        </div>
+    );
 }
 
 export default App;

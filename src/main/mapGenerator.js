@@ -1,5 +1,5 @@
 import React from 'react';
-import yaml from 'js-yaml'
+import yaml from 'js-yaml';
 class Map extends React.Component {
     constructor(props) {
         super(props);
@@ -7,6 +7,7 @@ class Map extends React.Component {
             id: props.level,
             data: null,
             error: null,
+            backToLevelSelect: props.onBackToLevelSelect
         };
     }
 
@@ -29,7 +30,7 @@ class Map extends React.Component {
     }
 
     render() {
-        const { data, error } = this.state;
+        const { data, error, backToLevelSelect } = this.state;
 
         if (error) {
             return <div>Error: {error.message}</div>;
@@ -41,6 +42,7 @@ class Map extends React.Component {
 
         return (
             <div>
+                <button onClick={backToLevelSelect}>Back to Level Selection</button>
                 <h1>{data.name}</h1>
                 <p>{data.map.join("\n")}</p>
             </div>
