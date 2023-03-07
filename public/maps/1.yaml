@@ -1,10 +1,10 @@
 name: "Mapa 1"
 tiles: {
-  "wall": "W",
-  "floor": "F",
-  "player": "P",
-  "water": "M",
-  "treasure": "T"
+  W: "wall",
+  F: "floor",
+  P: "player",
+  M: "mud",
+  T: "treasure"
 }
 map: [
   "WWWWWWWWWWW",
