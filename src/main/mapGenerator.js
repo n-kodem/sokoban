@@ -104,7 +104,7 @@ class Map extends React.Component {
         // check if new position is interactional tile
         if (!specialTilesActions.hasOwnProperty(this.state.data.tiles[updatedMap[newPlayerPosition.y][newPlayerPosition.x]]))
             return;
-        console.log(specialTilesActions.hasOwnProperty(this.state.data.tiles[updatedMap[newPlayerPosition.y][newPlayerPosition.x]]))
+
         specialTilesActions[this.state.data.tiles[updatedMap[newPlayerPosition.y][newPlayerPosition.x]]]()
 
         // check if player is on special tile

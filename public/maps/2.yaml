@@ -1,10 +1,11 @@
 name: "Mapa 2"
 tiles: {
-  "W": "wall",
-  "F": "floor",
-  "P": "player",
-  "M": "mud",
-  "T": "treasure"
+  W: "wall",
+  F: "floor",
+  P: "player",
+  S: "stone",
+  O: "player_on_treasure",
+  T: "treasure"
 }
 map: [
   "WWWWWWWWWWW",
@@ -12,4 +13,14 @@ map: [
   "WFFFFWFFFWW",
   "WFFFFFFFTWW",
   "WWWWWWWWWWW"
+]
+textures: {
+  wall: "black",
+  floor: "gray",
+  player: "red",
+  player_on_treasure: "gold",
+  treasure: "yellow"
+}
+tasks: [
+  "treasure"
 ]

@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import Map from "./main/mapGenerator";
 import React, { useState } from 'react';
