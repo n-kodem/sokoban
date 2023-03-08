@@ -37,7 +37,7 @@ class Map extends React.Component {
         let playerPosition = { x: -1, y: -1 };
         map.forEach((row, y) => {
             row.split("").forEach((letter, x) => {
-                if (letter === this.getTileSign("player")) {
+                if (letter === this.getTileSign("player") || letter === this.getTileSign("player_on_button")) {
                     playerPosition = { x, y };
                     return playerPosition;
                 }
@@ -46,23 +46,63 @@ class Map extends React.Component {
         return playerPosition;
     }
     movePlayer(map, tiles, oldPlayerPosition, newPlayerPosition) {
-        let updatedMap = map.map((el,_)=>{ return el.toString().split("")}) //map[0].toString().split("");
+        let updatedMap = map.map((el,_)=>{ return el.toString().split("")})
+        let playerTile = this.getTileSign("player");
+        let floorTile = this.getTileSign("floor");
+        // used when player moves on special tile
+        let specialTilesActions = {
+            "stone": () => {
+                // tiles that stone can move on and what to do
+                let stoneMovesOn = {
+                    "floor": () => {
+                        updatedMap[newPlayerPosition.y + (newPlayerPosition.y-oldPlayerPosition.y)][newPlayerPosition.x +newPlayerPosition.x-oldPlayerPosition.x] = this.getTileSign("stone");
+                    },
+                    "button": () => {
+                        updatedMap[newPlayerPosition.y + (newPlayerPosition.y-oldPlayerPosition.y)][newPlayerPosition.x +newPlayerPosition.x-oldPlayerPosition.x] = this.getTileSign("clicked_button");
+                    }
+                }
+                // moves stone if it can move on the tile
+                if (!stoneMovesOn.hasOwnProperty(
+                    this.state.data.tiles[updatedMap[newPlayerPosition.y +
+                    (newPlayerPosition.y-oldPlayerPosition.y)][newPlayerPosition.x +newPlayerPosition.x-oldPlayerPosition.x]]
+                ))
+                    return false;
+                stoneMovesOn[this.state.data.tiles[updatedMap[newPlayerPosition.y +
+                (newPlayerPosition.y-oldPlayerPosition.y)][newPlayerPosition.x +newPlayerPosition.x-oldPlayerPosition.x]]]();
 
-        // check if new position is stone to move it
-        if (updatedMap[newPlayerPosition.y][newPlayerPosition.x] === this.getTileSign("stone")) {
-            console.log("stone")
-            // console.log((newPlayerPosition.y-oldPlayerPosition.y,newPlayerPosition.x-oldPlayerPosition.x));
-            // move stone if next title after it is floor
-            if (updatedMap[newPlayerPosition.y + (newPlayerPosition.y-oldPlayerPosition.y)][newPlayerPosition.x +newPlayerPosition.x-oldPlayerPosition.x] !== this.getTileSign("floor"))
-                return;
-            updatedMap[newPlayerPosition.y + (newPlayerPosition.y-oldPlayerPosition.y)][newPlayerPosition.x +newPlayerPosition.x-oldPlayerPosition.x] = this.getTileSign("stone");
+                return true;
+            },
+            "clicked_button": () => {
+                if (updatedMap[newPlayerPosition.y + (newPlayerPosition.y-oldPlayerPosition.y)][newPlayerPosition.x +newPlayerPosition.x-oldPlayerPosition.x] !== this.getTileSign("floor"))
+                    return false;
+                updatedMap[newPlayerPosition.y + (newPlayerPosition.y-oldPlayerPosition.y)][newPlayerPosition.x +newPlayerPosition.x-oldPlayerPosition.x] = this.getTileSign("stone");
+                playerTile = this.getTileSign("player_on_button");
+                return true;
+            },
+            "button": () => {
+                playerTile = this.getTileSign("player_on_button");
+                return true;
+            },
+            "player_on_button": () => {
+                floorTile = this.getTileSign("button");
+                return true;
+            }
         }
-        updatedMap[oldPlayerPosition.y][oldPlayerPosition.x] = this.getTileSign("floor");
-        updatedMap[newPlayerPosition.y][newPlayerPosition.x] = this.getTileSign("player");
+        // check if new position is special tile
+        if (specialTilesActions.hasOwnProperty(this.state.data.tiles[updatedMap[newPlayerPosition.y][newPlayerPosition.x]]))
+            if(!specialTilesActions[this.state.data.tiles[updatedMap[newPlayerPosition.y][newPlayerPosition.x]]]())
+                return;
+
+        // check if player is player_on_button
+        if (updatedMap[oldPlayerPosition.y][oldPlayerPosition.x] !== this.getTileSign("player"))
+            specialTilesActions[this.state.data.tiles[updatedMap[oldPlayerPosition.y][oldPlayerPosition.x]]]()
+
+
+        updatedMap[oldPlayerPosition.y][oldPlayerPosition.x] = floorTile;
+        updatedMap[newPlayerPosition.y][newPlayerPosition.x] = playerTile;
         updatedMap = updatedMap.map((el)=>{ return el.join("")})
-        // console.log(updatedMap);
-        // console.log(oldPlayerPosition);
-        // console.log(newPlayerPosition);
+
+
         this.setState({ data: { ...this.state.data, map: updatedMap } });
     }
     handleKeyDown(event) {
@@ -125,6 +165,7 @@ class Map extends React.Component {
             stone: "lightblue",
             clicked_button: "cyan",
             button: "darkgray",
+            player_on_button: "darkred",
             treasure: "yellow"
         }
 
