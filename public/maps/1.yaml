@@ -5,12 +5,18 @@ tiles: {
   P: "player",
   M: "mud",
   S: "stone",
+  B: "button",
+  C: "clicked_button",
   T: "treasure"
 }
 map: [
-  "WWWWWWWWWWW",
-  "WFFFFMFFFFW",
-  "WFSFFWFFFFW",
-  "WPFFFWFFFTW",
-  "WWWWWWWWWWW"
+  "WWWWWWWW",
+  "WWWFFFWW",
+  "WBPSFFWW",
+  "WWWFSBWW",
+  "WBWWSFWW",
+  "WFWFBFWW",
+  "WSFCSSBW",
+  "WFFFBFFW",
+  "WWWWWWWW"
 ]

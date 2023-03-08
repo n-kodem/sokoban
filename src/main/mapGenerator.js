@@ -25,7 +25,7 @@ class Map extends React.Component {
     loadData(id) {
         fetch(`./maps/${id}.yaml`)
             .then((response) => response.text())
-            .then((yamlData) => yaml.load(yamlData))
+            .then((yamlData) => yaml.load(yamlData,{}))
             .then((parsedData) => this.setState({ data: parsedData, error: null }))
             .catch((error) => this.setState({ data: null, error: error }));
     }
@@ -33,7 +33,7 @@ class Map extends React.Component {
         const { tiles } = this.state.data;
         return Object.keys(tiles).find(key => tiles[key] === tile);
     }
-    getPlayerPosition(map,tiles) {
+    getPlayerPosition(map) {
         let playerPosition = { x: -1, y: -1 };
         map.forEach((row, y) => {
             row.split("").forEach((letter, x) => {
@@ -48,12 +48,10 @@ class Map extends React.Component {
     movePlayer(map, tiles, oldPlayerPosition, newPlayerPosition) {
         let updatedMap = map.map((el,_)=>{ return el.toString().split("")}) //map[0].toString().split("");
 
-        // updatedMap[oldPlayerPosition.y][oldPlayerPosition.x] = "F"
-        // console.log(updatedMap[oldPlayerPosition.y][oldPlayerPosition.x]);
         // check if new position is stone to move it
         if (updatedMap[newPlayerPosition.y][newPlayerPosition.x] === this.getTileSign("stone")) {
             console.log("stone")
-            console.log((newPlayerPosition.y-oldPlayerPosition.y,newPlayerPosition.x-oldPlayerPosition.x));
+            // console.log((newPlayerPosition.y-oldPlayerPosition.y,newPlayerPosition.x-oldPlayerPosition.x));
             // move stone if next title after it is floor
             if (updatedMap[newPlayerPosition.y + (newPlayerPosition.y-oldPlayerPosition.y)][newPlayerPosition.x +newPlayerPosition.x-oldPlayerPosition.x] !== this.getTileSign("floor"))
                 return;
@@ -62,9 +60,9 @@ class Map extends React.Component {
         updatedMap[oldPlayerPosition.y][oldPlayerPosition.x] = this.getTileSign("floor");
         updatedMap[newPlayerPosition.y][newPlayerPosition.x] = this.getTileSign("player");
         updatedMap = updatedMap.map((el)=>{ return el.join("")})
-        console.log(updatedMap);
-        console.log(oldPlayerPosition);
-        console.log(newPlayerPosition);
+        // console.log(updatedMap);
+        // console.log(oldPlayerPosition);
+        // console.log(newPlayerPosition);
         this.setState({ data: { ...this.state.data, map: updatedMap } });
     }
     handleKeyDown(event) {
@@ -73,7 +71,7 @@ class Map extends React.Component {
         const { data,tiles } = this.state;
         let map = data.map;
         // move player if next title is floor
-        const playerPosition = this.getPlayerPosition(map, tiles);
+        const playerPosition = this.getPlayerPosition(map);
         let newPlayerPosition = { x: playerPosition.x, y: playerPosition.y };
         let movement = {
             37: () => {
@@ -124,7 +122,9 @@ class Map extends React.Component {
             floor: "gray",
             player: "red",
             mud: "blue",
-            stone: "darkgray",
+            stone: "lightblue",
+            clicked_button: "cyan",
+            button: "darkgray",
             treasure: "yellow"
         }
 
