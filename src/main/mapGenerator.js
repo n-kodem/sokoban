@@ -53,6 +53,9 @@ class Map extends React.Component {
         let floorTile = this.getTileSign("floor");
         // used when player moves on special tile
         let specialTilesActions = {
+            "floor": () => {
+                return true;
+            },
             "stone": () => {
                 // tiles that stone can move on and what to do
                 let stoneMovesOn = {
@@ -98,10 +101,11 @@ class Map extends React.Component {
                 return true;
             }
         }
-        // check if new position is special tile
-        if (specialTilesActions.hasOwnProperty(this.state.data.tiles[updatedMap[newPlayerPosition.y][newPlayerPosition.x]]))
-            if(!specialTilesActions[this.state.data.tiles[updatedMap[newPlayerPosition.y][newPlayerPosition.x]]]())
-                return;
+        // check if new position is interactional tile
+        if (!specialTilesActions.hasOwnProperty(this.state.data.tiles[updatedMap[newPlayerPosition.y][newPlayerPosition.x]]))
+            return;
+        console.log(specialTilesActions.hasOwnProperty(this.state.data.tiles[updatedMap[newPlayerPosition.y][newPlayerPosition.x]]))
+        specialTilesActions[this.state.data.tiles[updatedMap[newPlayerPosition.y][newPlayerPosition.x]]]()
 
         // check if player is on special tile
         if (updatedMap[oldPlayerPosition.y][oldPlayerPosition.x] !== this.getTileSign("player"))
@@ -126,29 +130,21 @@ class Map extends React.Component {
         let movement = {
             37: () => {
                 // left
-                if ([this.getTileSign("wall"),this.getTileSign("mud")].includes(map[playerPosition.y][playerPosition.x - 1]))
-                    return;
                 newPlayerPosition.x -= 1;
 
             },
             38: () => {
                 // up
-                if ([this.getTileSign("wall"),this.getTileSign("mud")].includes(map[playerPosition.y - 1][playerPosition.x]))
-                    return;
                 newPlayerPosition.y -= 1;
 
             },
             39: () => {
                 // right
-                if ([this.getTileSign("wall"),this.getTileSign("mud")].includes(map[playerPosition.y][playerPosition.x + 1]))
-                    return;
                 newPlayerPosition.x += 1;
 
             },
             40: () => {
                 // down
-                if ([this.getTileSign("wall"),this.getTileSign("mud")].includes(map[playerPosition.y + 1][playerPosition.x]))
-                    return;
                 newPlayerPosition.y += 1;
 
             }
