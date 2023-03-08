@@ -46,51 +46,67 @@ class Map extends React.Component {
         return playerPosition;
     }
     movePlayer(map, tiles, oldPlayerPosition, newPlayerPosition) {
-        let newMap = map.map((el,index)=>{ return el.toString().split("")}) //map[0].toString().split("");
+        let updatedMap = map.map((el,_)=>{ return el.toString().split("")}) //map[0].toString().split("");
 
-        // newMap[oldPlayerPosition.y][oldPlayerPosition.x] = "F"
-        // console.log(newMap[oldPlayerPosition.y][oldPlayerPosition.x]);
-
-        newMap[oldPlayerPosition.y][oldPlayerPosition.x] = this.getTileSign("floor");
-        newMap[newPlayerPosition.y][newPlayerPosition.x] = this.getTileSign("player");
-        newMap = newMap.map((el)=>{ return el.join("")})
-        console.log(newMap);
+        // updatedMap[oldPlayerPosition.y][oldPlayerPosition.x] = "F"
+        // console.log(updatedMap[oldPlayerPosition.y][oldPlayerPosition.x]);
+        // check if new position is stone to move it
+        if (updatedMap[newPlayerPosition.y][newPlayerPosition.x] === this.getTileSign("stone")) {
+            console.log("stone")
+            console.log((newPlayerPosition.y-oldPlayerPosition.y,newPlayerPosition.x-oldPlayerPosition.x));
+            // move stone if next title after it is floor
+            if (updatedMap[newPlayerPosition.y + (newPlayerPosition.y-oldPlayerPosition.y)][newPlayerPosition.x +newPlayerPosition.x-oldPlayerPosition.x] !== this.getTileSign("floor"))
+                return;
+            updatedMap[newPlayerPosition.y + (newPlayerPosition.y-oldPlayerPosition.y)][newPlayerPosition.x +newPlayerPosition.x-oldPlayerPosition.x] = this.getTileSign("stone");
+        }
+        updatedMap[oldPlayerPosition.y][oldPlayerPosition.x] = this.getTileSign("floor");
+        updatedMap[newPlayerPosition.y][newPlayerPosition.x] = this.getTileSign("player");
+        updatedMap = updatedMap.map((el)=>{ return el.join("")})
+        console.log(updatedMap);
         console.log(oldPlayerPosition);
         console.log(newPlayerPosition);
-        this.setState({ data: { ...this.state.data, map: newMap } });
+        this.setState({ data: { ...this.state.data, map: updatedMap } });
     }
     handleKeyDown(event) {
-        console.log(`Key ${event.keyCode} pressed`);
+        // console.log(`Key ${event.keyCode} pressed`);
         // player moving stuff
         const { data,tiles } = this.state;
         let map = data.map;
         // move player if next title is floor
         const playerPosition = this.getPlayerPosition(map, tiles);
         let newPlayerPosition = { x: playerPosition.x, y: playerPosition.y };
-        if (event.keyCode === 37) {
-            // left
-            if (map[playerPosition.y][playerPosition.x - 1] === this.getTileSign("floor")) {
+        let movement = {
+            37: () => {
+                // left
+                if ([this.getTileSign("wall"),this.getTileSign("mud")].includes(map[playerPosition.y][playerPosition.x - 1]))
+                    return;
                 newPlayerPosition.x -= 1;
-            }
-        }
-        if (event.keyCode === 38) {
-            // up
-            if (map[playerPosition.y - 1][playerPosition.x] === this.getTileSign("floor")) {
+
+            },
+            38: () => {
+                // up
+                if ([this.getTileSign("wall"),this.getTileSign("mud")].includes(map[playerPosition.y - 1][playerPosition.x]))
+                    return;
                 newPlayerPosition.y -= 1;
-            }
-        }
-        if (event.keyCode === 39) {
-            // right
-            if (map[playerPosition.y][playerPosition.x + 1] === this.getTileSign("floor")) {
+
+            },
+            39: () => {
+                // right
+                if ([this.getTileSign("wall"),this.getTileSign("mud")].includes(map[playerPosition.y][playerPosition.x + 1]))
+                    return;
                 newPlayerPosition.x += 1;
-            }
-        }
-        if (event.keyCode === 40) {
-            // down
-            if (map[playerPosition.y + 1][playerPosition.x] === this.getTileSign("floor")) {
+
+            },
+            40: () => {
+                // down
+                if ([this.getTileSign("wall"),this.getTileSign("mud")].includes(map[playerPosition.y + 1][playerPosition.x]))
+                    return;
                 newPlayerPosition.y += 1;
+
             }
-        }
+        };
+        movement.hasOwnProperty(event.keyCode) && movement[event.keyCode]();
+
         this.movePlayer(map, tiles, playerPosition, newPlayerPosition);
     }
     render() {
@@ -108,6 +124,7 @@ class Map extends React.Component {
             floor: "gray",
             player: "red",
             mud: "blue",
+            stone: "darkgray",
             treasure: "yellow"
         }
 

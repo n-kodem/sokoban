@@ -4,12 +4,13 @@ tiles: {
   F: "floor",
   P: "player",
   M: "mud",
+  S: "stone",
   T: "treasure"
 }
 map: [
   "WWWWWWWWWWW",
   "WFFFFMFFFFW",
-  "WFFFFWFFFFW",
+  "WFSFFWFFFFW",
   "WPFFFWFFFTW",
   "WWWWWWWWWWW"
 ]
