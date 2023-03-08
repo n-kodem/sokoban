@@ -35,9 +35,11 @@ class Map extends React.Component {
     }
     getPlayerPosition(map) {
         let playerPosition = { x: -1, y: -1 };
+        // Get all tiles that are player
+        let playerTiles = Object.keys(this.state.data.tiles).filter(key => this.state.data.tiles[key].includes("player"));
         map.forEach((row, y) => {
             row.split("").forEach((letter, x) => {
-                if (letter === this.getTileSign("player") || letter === this.getTileSign("player_on_button")) {
+                if (playerTiles.includes(letter.toString())) {
                     playerPosition = { x, y };
                     return playerPosition;
                 }
@@ -83,8 +85,16 @@ class Map extends React.Component {
                 playerTile = this.getTileSign("player_on_button");
                 return true;
             },
+            "treasure": () => {
+                playerTile = this.getTileSign("player_on_treasure");
+                return true;
+            },
             "player_on_button": () => {
                 floorTile = this.getTileSign("button");
+                return true;
+            },
+            "player_on_treasure": () => {
+                floorTile = this.getTileSign("treasure");
                 return true;
             }
         }
@@ -93,7 +103,7 @@ class Map extends React.Component {
             if(!specialTilesActions[this.state.data.tiles[updatedMap[newPlayerPosition.y][newPlayerPosition.x]]]())
                 return;
 
-        // check if player is player_on_button
+        // check if player is on special tile
         if (updatedMap[oldPlayerPosition.y][oldPlayerPosition.x] !== this.getTileSign("player"))
             specialTilesActions[this.state.data.tiles[updatedMap[oldPlayerPosition.y][oldPlayerPosition.x]]]()
 
@@ -157,25 +167,24 @@ class Map extends React.Component {
         if (!data) {
             return <div>Loading...</div>;
         }
-        const textures = {
-            wall: "black",
-            floor: "gray",
-            player: "red",
-            mud: "blue",
-            stone: "lightblue",
-            clicked_button: "cyan",
-            button: "darkgray",
-            player_on_button: "darkred",
-            treasure: "yellow"
-        }
+        // const textures = {
+        //     wall: "black",
+        //     floor: "gray",
+        //     player: "red",
+        //     mud: "blue",
+        //     stone: "lightblue",
+        //     clicked_button: "cyan",
+        //     button: "darkgray",
+        //     player_on_button: "darkred",
+        //     treasure: "yellow"
+        // }
 
         const table = data.map.map((row,index) => {
-            // console.log(row);
             return <tr key={100+index}>{
                 row.toString().split('').map((cell,index) => {
                     return <td style={
                         {
-                            backgroundColor: textures[data.tiles[cell]],
+                            backgroundColor: data.textures[data.tiles[cell]],
                             width:"2ch",
                             height:"2ch",
                             aspectRatio: "1",

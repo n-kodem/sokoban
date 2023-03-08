@@ -8,6 +8,7 @@ tiles: {
   B: "button",
   C: "clicked_button",
   A: "player_on_button",
+  O: "player_on_treasure",
   T: "treasure"
 }
 map: [
@@ -21,6 +22,18 @@ map: [
   "WTFFBFFW",
   "WWWWWWWW"
 ]
+textures: {
+  wall: "black",
+  floor: "gray",
+  stone: "lightblue",
+  button: "darkgray",
+  clicked_button: "cyan",
+  player: "red",
+  player_on_button: "darkred",
+  player_on_treasure: "gold",
+  mud: "blue",
+  treasure: "yellow"
+}
 tasks: [
   "buttons",
   "treasure"
