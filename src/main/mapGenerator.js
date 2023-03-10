@@ -7,6 +7,7 @@ class Map extends React.Component {
             id: props.level,
             data: null,
             error: null,
+            levelFinished: false,
             backToLevelSelect: props.onBackToLevelSelect
         };
         this.handleKeyDown = this.handleKeyDown.bind(this);
@@ -16,12 +17,19 @@ class Map extends React.Component {
         window.addEventListener('keydown', this.handleKeyDown);
     }
 
-    // componentDidUpdate(prevProps) {
-    //     if (prevprops.level !== this.props.level) {
-    //         this.loadData(this.props.level);
-    //     }
-    // }
+    componentDidUpdate(prevProps, prevState) {
+        console.log("XD",this.checkIfLevelFinished(),!this.state.levelFinished)
+        // console.log(prevProps)
+        console.log("ID",this.state.id,prevProps.level)
+        if (this.state.id === prevProps.level)
+        if (this.checkIfLevelFinished() && !this.state.levelFinished){
+                this.setState({ levelFinished: true })
+        }
+        // if (this.state.levelFinished && !prevState.levelFinished) {
+        //     // alert("Level completed!");
+        // }
 
+    }
     loadData(id) {
         fetch(`./maps/${id}.yaml`)
             .then((response) => response.text())
@@ -32,6 +40,50 @@ class Map extends React.Component {
     getTileSign(tile) {
         const { tiles } = this.state.data;
         return Object.keys(tiles).find(key => tiles[key] === tile);
+    }
+    // Check if player finished the level
+    checkIfLevelFinished() {
+        const {tasks,map} = this.state.data;
+        console.table(map);
+        let taskHandler = {
+            "buttons": () => {
+                // Get all tiles that are button
+                let buttonTiles = 0
+                map.forEach((row) => {
+                    row.split("").forEach((letter, _) => {
+                        if (letter === this.getTileSign("stone")) {
+                            buttonTiles+=1;
+                        }
+                    });
+                });
+                // check if there are no buttons left
+                // console.log("btns" + buttonTiles)
+                return buttonTiles === 0;
+            },
+            "treasure": () => {
+                // Get all tiles that are treasure
+                let treasureTiles = 0
+                map.forEach((row) => {
+                    row.split("").forEach((letter, _) => {
+                        if (letter === this.getTileSign("treasure")) {
+                            treasureTiles+=1;
+                        }
+                    });
+                });
+                // check if there are no treasures left
+                return treasureTiles === 0;
+            }
+        }
+        let finished = 0;
+        tasks.forEach(task => {
+            finished+=taskHandler[task]()
+        })
+        // console.log(finished === tasks.length)
+        // this.setState({ levelFinished: finished === tasks.length })
+        // console.log(this.state.levelFinished);
+        return finished === tasks.length;
+
+
     }
     getPlayerPosition(map) {
         let playerPosition = { x: -1, y: -1 };
@@ -104,7 +156,8 @@ class Map extends React.Component {
         if (!specialTilesActions.hasOwnProperty(this.state.data.tiles[updatedMap[newPlayerPosition.y][newPlayerPosition.x]]))
             return;
 
-        specialTilesActions[this.state.data.tiles[updatedMap[newPlayerPosition.y][newPlayerPosition.x]]]()
+        if(!specialTilesActions[this.state.data.tiles[updatedMap[newPlayerPosition.y][newPlayerPosition.x]]]())
+            return;
 
         // check if player is on special tile
         if (updatedMap[oldPlayerPosition.y][oldPlayerPosition.x] !== this.getTileSign("player"))
@@ -149,11 +202,16 @@ class Map extends React.Component {
             }
         };
         movement.hasOwnProperty(event.keyCode) && movement[event.keyCode]();
-
         this.movePlayer(map, tiles, playerPosition, newPlayerPosition);
+        // this.checkIfLevelFinished();
+
+
+        // console.log(this.state.levelFinished);
     }
     render() {
-        const { data, error, backToLevelSelect } = this.state;
+        const { data, error, backToLevelSelect,levelFinished } = this.state;
+
+        console.log(levelFinished)
 
         if (error) {
             return <div>Error: {error.message}</div>;
@@ -162,17 +220,6 @@ class Map extends React.Component {
         if (!data) {
             return <div>Loading...</div>;
         }
-        // const textures = {
-        //     wall: "black",
-        //     floor: "gray",
-        //     player: "red",
-        //     mud: "blue",
-        //     stone: "lightblue",
-        //     clicked_button: "cyan",
-        //     button: "darkgray",
-        //     player_on_button: "darkred",
-        //     treasure: "yellow"
-        // }
 
         const table = data.map.map((row,index) => {
             return <tr key={100+index}>{
@@ -199,6 +246,7 @@ class Map extends React.Component {
                 </tbody>
 
                 </table>
+                {this.state.levelFinished && (<div><h1>Level Finished!</h1><button onClick={()=>{this.setState({ id: this.state.id+1,levelFinished:false });this.loadData(this.state.id+1)}}>Next Level</button><button>Restart Level</button></div>)}
             </div>
         );
     }
