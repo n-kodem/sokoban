@@ -246,7 +246,14 @@ class Map extends React.Component {
                 </tbody>
 
                 </table>
-                {this.state.levelFinished && (<div><h1>Level Finished!</h1><button onClick={()=>{this.setState({ id: this.state.id+1,levelFinished:false });this.loadData(this.state.id+1)}}>Next Level</button><button>Restart Level</button></div>)}
+                {this.state.levelFinished && (
+                    <div><h1>Level Finished!</h1>
+                        <button onClick={()=>{this.setState({ id: this.state.id+1,levelFinished:false });this.loadData(this.state.id+1)}}>Next Level</button>
+                        <button>Restart Level</button>
+                    </div>
+                )
+
+                }
             </div>
         );
     }
