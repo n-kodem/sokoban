@@ -232,7 +232,7 @@ class Map extends React.Component {
         });
         return (
             <div>
-                <button onClick={backToLevelSelect}>Back to Level Selection</button>
+                <button className={"btn btn-primary"} onClick={backToLevelSelect}>Back to Level Selection</button>
                 <h1>{data.name}</h1>
                 <table style={{borderCollapse: "collapse"}}><tbody>
                 {
@@ -243,8 +243,8 @@ class Map extends React.Component {
                 </table>
                 {this.checkIfLevelFinished() && (
                     <div><h1>Level Finished!</h1>
-                        <button onClick={()=>{this.setState({ id: this.state.id+1,levelFinished:false });this.loadData(this.state.id+1)}}>Next Level</button>
-                        <button onClick={()=>{this.setState({ levelFinished:false });this.loadData(this.state.id)}}>Restart Level</button></div>
+                        <button className={"btn btn-primary"} onClick={()=>{this.setState({ id: this.state.id+1,levelFinished:false });this.loadData(this.state.id+1)}}>Next Level</button>
+                        <button className={"btn btn-secondary"} onClick={()=>{this.setState({ levelFinished:false });this.loadData(this.state.id)}}>Restart Level</button></div>
                 )}
             </div>
         );

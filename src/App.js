@@ -1,6 +1,7 @@
 // import logo from './logo.svg';
 import './App.css';
 import Map from "./main/mapGenerator";
+import Settings from "./main/Settings";
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
@@ -39,7 +40,9 @@ function LevelSelection(props) {
                         <div id="panelsStayOpen-collapseTwo" className="accordion-collapse collapse show"
                              aria-labelledby="panelsStayOpen-headingTwo">
                             <div className="accordion-body">
-                                Todo
+                                <button className={"btn btn-primary"} onClick={() => props.onLevelSelect(1)}>1</button>
+                                <button className={"btn btn-primary"} onClick={() => props.onLevelSelect(2)}>2</button>
+                                <button className={"btn btn-primary"} onClick={() => props.onLevelSelect(3)}>3</button>
                             </div>
                         </div>
                     </div>
@@ -54,7 +57,9 @@ function LevelSelection(props) {
                         <div id="panelsStayOpen-collapseThree" className="accordion-collapse collapse show"
                              aria-labelledby="panelsStayOpen-headingThree">
                             <div className="accordion-body">
-                                Todo
+                                <button className={"btn btn-primary"} onClick={() => props.onLevelSelect(1)}>1</button>
+                                <button className={"btn btn-primary"} onClick={() => props.onLevelSelect(2)}>2</button>
+                                <button className={"btn btn-primary"} onClick={() => props.onLevelSelect(3)}>3</button>
                             </div>
                         </div>
                     </div>
@@ -69,12 +74,14 @@ function LevelSelection(props) {
                         <div id="panelsStayOpen-collapseFour" className="accordion-collapse collapse show"
                              aria-labelledby="panelsStayOpen-headingFour">
                             <div className="accordion-body">
-                                Todo
+                                <button className={"btn btn-primary"} onClick={() => props.onLevelSelect(1)}>1</button>
+                                <button className={"btn btn-primary"} onClick={() => props.onLevelSelect(2)}>2</button>
+                                <button className={"btn btn-primary"} onClick={() => props.onLevelSelect(3)}>3</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <button type="button" className="btn btn-primary btn-settings" title={"Settings"}>
+                <button type="button" className="btn btn-primary btn-settings" title={"Settings"} onClick={() => props.onLevelSelect(-1)}>
                     <svg width="32" height="32" fill="currentColor"
                          className="bi bi-gear-fill" viewBox="0 0 16 16">
                         <path
@@ -103,7 +110,13 @@ function App() {
 
     return (
         <div className="App">
-            {isLevelSelectionDisplayed ? <LevelSelection onLevelSelect={handleLevelSelect} /> : <Map {...{ level: selectedLevel, onBackToLevelSelect: handleBackToLevelSelect }} />}
+            {
+                isLevelSelectionDisplayed ?
+                    <LevelSelection onLevelSelect={handleLevelSelect} />
+                : selectedLevel===-1 ?
+                        <Settings {...{onBackToLevelSelect: handleBackToLevelSelect}}/>
+                : <Map {...{ level: selectedLevel, onBackToLevelSelect: handleBackToLevelSelect }} />
+            }
         </div>
     );
 }
