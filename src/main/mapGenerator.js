@@ -205,7 +205,7 @@ class Map extends React.Component {
         this.movePlayer(map, tiles, playerPosition, newPlayerPosition);
     }
     render() {
-        const { data, error, backToLevelSelect,levelFinished } = this.state;
+        const { data, error, backToLevelSelect } = this.state;
 
 
         if (error) {
