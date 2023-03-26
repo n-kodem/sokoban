@@ -5,9 +5,13 @@
 }
 h1{
   color: white;
-}
-.App>div, .accordion-body > button{
   margin: 1ch;
+}
+.App>div, .accordion-body > * + *{
+  margin: 1ch;
+}
+.accordion-body > *:first-child{
+  margin: 1ch 1ch 1ch 0;
 }
 .accordion-button{
   --bs-accordion-btn-focus-box-shadow: none;
