@@ -1,7 +1,32 @@
 .App {
-  text-align: center;
+  background: #4d4dff;
+  height: fit-content;
+  width: max(400px, 10vh);
 }
-
+h1{
+  color: white;
+}
+.App>div, .accordion-body > button{
+  margin: 1ch;
+}
+.accordion-button{
+  --bs-accordion-btn-focus-box-shadow: none;
+  background-color: var(--bs-accordion-active-bg) !important;
+  color: var(--bs-accordion-active-color) !important;
+  --bs-accordion-btn-icon: var(--bs-accordion-btn-active-icon) !important;
+}
+.accordion-item:nth-child(1){
+  filter: hue-rotate(220deg) saturate(2.5);
+}
+.accordion-item:nth-child(2){
+  filter: hue-rotate(170deg) saturate(2.5);
+}
+.accordion-item:nth-child(3){
+  filter: hue-rotate(140deg) saturate(2.5);
+}
+.accordion-item:nth-child(4){
+  filter: hue-rotate(100deg) saturate(2.5);
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
