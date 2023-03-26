@@ -11,6 +11,11 @@
   width: fit-content;
   height: fit-content;
 }
+.form-range::-moz-range-thumb{
+  background-color: #0d6efd !important;
+  border: initial;
+  box-shadow: inherit !important;
+}
 h1{
   color: white;
   margin: 1ch;

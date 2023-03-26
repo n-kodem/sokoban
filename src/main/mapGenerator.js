@@ -117,26 +117,48 @@ class Map extends React.Component {
                     },
                     "button": () => {
                         updatedMap[positionAfterPlayer.y][positionAfterPlayer.x] = this.getTileSign("clicked_button");
+                    },
+                    "mud": () => {
+                        updatedMap[positionAfterPlayer.y][positionAfterPlayer.x] = this.getTileSign("bridge");
                     }
                 }
+
                 // moves stone if it can move on the tile
                 if (!stoneMovesOn.hasOwnProperty(
                     this.state.data.tiles[updatedMap[positionAfterPlayer.y][positionAfterPlayer.x]]
                 ))
                     return false;
+                // handle stone movement
                 stoneMovesOn[this.state.data.tiles[updatedMap[positionAfterPlayer.y][positionAfterPlayer.x]]]();
 
                 return true;
             },
             "clicked_button": () => {
-                if (updatedMap[positionAfterPlayer.y][positionAfterPlayer.x] !== this.getTileSign("floor"))
+                if (
+                    updatedMap[positionAfterPlayer.y][positionAfterPlayer.x] !== this.getTileSign("floor") &&
+                    updatedMap[positionAfterPlayer.y][positionAfterPlayer.x] !== this.getTileSign("button")
+                )
                     return false;
+
+                // if stone was on floor -- default
                 updatedMap[positionAfterPlayer.y][positionAfterPlayer.x] = this.getTileSign("stone");
+
+                // if stone position wasn't originally floor
+                if (map[positionAfterPlayer.y][positionAfterPlayer.x] !== this.getTileSign("floor"))
+                    updatedMap[positionAfterPlayer.y][positionAfterPlayer.x] = this.getTileSign("clicked_button");
+
                 playerTile = this.getTileSign("player_on_button");
+
+                // if (map[oldPlayerPosition.y][oldPlayerPosition.x] === this.getTileSign("button"))
+                //     floorTile = this.getTileSign("button")
                 return true;
             },
             "button": () => {
                 playerTile = this.getTileSign("player_on_button");
+                return true;
+            },
+            "bridge": () => {
+                playerTile = this.getTileSign("player_on_bridge");
                 return true;
             },
             "treasure": () => {
@@ -145,6 +167,10 @@ class Map extends React.Component {
             },
             "player_on_button": () => {
                 floorTile = this.getTileSign("button");
+                return true;
+            },
+            "player_on_bridge": () => {
+                floorTile = this.getTileSign("bridge");
                 return true;
             },
             "player_on_treasure": () => {
@@ -233,6 +259,7 @@ class Map extends React.Component {
         return (
             <div>
                 <button className={"btn btn-primary"} onClick={backToLevelSelect}>Back to Level Selection</button>
+                <button className={"btn btn-secondary"} onClick={()=>{this.setState({ levelFinished:false });this.loadData(this.state.id)}}>Restart Level</button>
                 <h1>{data.name}</h1>
                 <table style={{borderCollapse: "collapse"}}><tbody>
                 {
@@ -244,7 +271,7 @@ class Map extends React.Component {
                 {this.checkIfLevelFinished() && (
                     <div><h1>Level Finished!</h1>
                         <button className={"btn btn-primary"} onClick={()=>{this.setState({ id: this.state.id+1,levelFinished:false });this.loadData(this.state.id+1)}}>Next Level</button>
-                        <button className={"btn btn-secondary"} onClick={()=>{this.setState({ levelFinished:false });this.loadData(this.state.id)}}>Restart Level</button></div>
+                    </div>
                 )}
             </div>
         );

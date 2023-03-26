@@ -108,6 +108,14 @@ function App() {
         setIsLevelSelectionDisplayed(true);
     }
 
+    React.useEffect(() => {
+        let volume = localStorage.getItem("volume")
+        if (volume === null) {
+            volume = 100;
+            localStorage.setItem("volume", `${volume}`);
+        }
+    })
+
     return (
         <div className="App">
             {
