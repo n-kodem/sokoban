@@ -17,10 +17,10 @@ class Map extends React.Component {
         window.addEventListener('keydown', this.handleKeyDown);
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        console.log("XD",this.checkIfLevelFinished(),!this.state.levelFinished)
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        // console.log("XD",this.checkIfLevelFinished(),!this.state.levelFinished)
         // console.log(prevProps)
-        console.log("ID",this.state.id,prevProps.level)
+        // console.log("ID",this.state.id,prevProps.level)
         if (this.state.id === prevProps.level)
         if (this.checkIfLevelFinished() && !this.state.levelFinished){
                 this.setState({ levelFinished: true })
@@ -44,7 +44,7 @@ class Map extends React.Component {
     // Check if player finished the level
     checkIfLevelFinished() {
         const {tasks,map} = this.state.data;
-        console.table(map);
+        // console.table(map);
         let taskHandler = {
             "buttons": () => {
                 // Get all tiles that are button
@@ -203,15 +203,10 @@ class Map extends React.Component {
         };
         movement.hasOwnProperty(event.keyCode) && movement[event.keyCode]();
         this.movePlayer(map, tiles, playerPosition, newPlayerPosition);
-        // this.checkIfLevelFinished();
-
-
-        // console.log(this.state.levelFinished);
     }
     render() {
         const { data, error, backToLevelSelect,levelFinished } = this.state;
 
-        console.log(levelFinished)
 
         if (error) {
             return <div>Error: {error.message}</div>;
@@ -246,14 +241,11 @@ class Map extends React.Component {
                 </tbody>
 
                 </table>
-                {this.state.levelFinished && (
+                {this.checkIfLevelFinished() && (
                     <div><h1>Level Finished!</h1>
                         <button onClick={()=>{this.setState({ id: this.state.id+1,levelFinished:false });this.loadData(this.state.id+1)}}>Next Level</button>
-                        <button>Restart Level</button>
-                    </div>
-                )
-
-                }
+                        <button onClick={()=>{this.setState({ levelFinished:false });this.loadData(this.state.id)}}>Restart Level</button></div>
+                )}
             </div>
         );
     }

@@ -1,0 +1,26 @@
+name: "Mapa 2"
+tiles: {
+  W: "wall",
+  F: "floor",
+  P: "player",
+  S: "stone",
+  O: "player_on_treasure",
+  T: "treasure"
+}
+map: [
+  "WWWWWWWWWWW",
+  "WFFFPWFFFWW",
+  "WFFFFWFFFWW",
+  "WFFFFFFFTWW",
+  "WWWWWWWWWWW"
+]
+textures: {
+  wall: "black",
+  floor: "gray",
+  player: "red",
+  player_on_treasure: "gold",
+  treasure: "yellow"
+}
+tasks: [
+  "treasure"
+]
