@@ -247,10 +247,7 @@ class Map extends React.Component {
                 row.toString().split('').map((cell,index) => {
                     return <td style={
                         {
-                            backgroundColor: data.textures[data.tiles[cell]],
-                            width:"2ch",
-                            height:"2ch",
-                            aspectRatio: "1",
+                            backgroundColor: data.textures[data.tiles[cell]]
                         }
                     } key={index}></td>;
                 })

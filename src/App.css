@@ -1,8 +1,13 @@
 .App {
   background: rgba(0, 89, 255, 0.78);
   height: fit-content;
-  width: max(400px, 10vh);
+  width: max(600px, 20vh);
   border-radius: 1ch;
+}
+td{
+  width: 32px !important;
+    height: 32px !important;
+  display: inline-block;
 }
 .btn-settings{
   margin: 1ch 0 1ch 0;

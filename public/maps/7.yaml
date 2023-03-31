@@ -14,13 +14,13 @@ tiles: {
   T: "treasure"
 }
 map: [
-  "WWWW",
-  "WFBW",
-  "WFFWWW",
-  "WCPFFW",
-  "WFFSFW",
-  "WFFWWW",
-  "WWWW"
+  "WWWWWWWWW",
+  "WFFWWWFFW",
+  "WFSFCFSFW",
+  "WFFFAFFFW",
+  "WWWFBSWWW",
+  "WWWFBFWWW",
+  "WWWWWWWWW"
 ]
 textures: {
   wall: "black",

@@ -1,26 +1,27 @@
-name: "Mapa 1"
+name: "Mapa 3"
 tiles: {
   W: "wall",
   F: "floor",
   P: "player",
   M: "mud",
-  R: "bridge",
   S: "stone",
   B: "button",
   C: "clicked_button",
   A: "player_on_button",
-  Z: "player_on_bridge",
   O: "player_on_treasure",
   T: "treasure"
 }
 map: [
-  "WWWW",
-  "WFBW",
-  "WFFWWW",
-  "WCPFFW",
-  "WFFSFW",
-  "WFFWWW",
-  "WWWW"
+  "WWWWWWWWWWWWFF",
+  "WBBFFWFFFFFWWW",
+  "WBBFFWFSFFSFFW",
+  "WBBFFWSWWWWFFW",
+  "WBBFFFFPFWWFFW",
+  "WBBFFWFWFFSFWW",
+  "WWWWWWFWWSFSFW",
+  "FFWFSFFSFSFSFW",
+  "FFWFFFFWFFFFFW",
+  "FFWWWWWWWWWWWW",
 ]
 textures: {
   wall: "black",
@@ -30,13 +31,10 @@ textures: {
   clicked_button: "cyan",
   player: "red",
   player_on_button: "darkred",
-  player_on_bridge: "azure",
   player_on_treasure: "gold",
   mud: "blue",
-  bridge: "aqua",
   treasure: "yellow"
 }
 tasks: [
-  "buttons",
-  "treasure"
+  "buttons"
 ]

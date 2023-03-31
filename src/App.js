@@ -40,9 +40,9 @@ function LevelSelection(props) {
                         <div id="panelsStayOpen-collapseTwo" className="accordion-collapse collapse show"
                              aria-labelledby="panelsStayOpen-headingTwo">
                             <div className="accordion-body">
-                                <button className={"btn btn-primary"} onClick={() => props.onLevelSelect(1)}>1</button>
-                                <button className={"btn btn-primary"} onClick={() => props.onLevelSelect(2)}>2</button>
-                                <button className={"btn btn-primary"} onClick={() => props.onLevelSelect(3)}>3</button>
+                                <button className={"btn btn-primary"} onClick={() => props.onLevelSelect(4)}>4</button>
+                                <button className={"btn btn-primary"} onClick={() => props.onLevelSelect(5)}>5</button>
+                                <button className={"btn btn-primary"} onClick={() => props.onLevelSelect(6)}>6</button>
                             </div>
                         </div>
                     </div>
@@ -57,9 +57,9 @@ function LevelSelection(props) {
                         <div id="panelsStayOpen-collapseThree" className="accordion-collapse collapse show"
                              aria-labelledby="panelsStayOpen-headingThree">
                             <div className="accordion-body">
-                                <button className={"btn btn-primary"} onClick={() => props.onLevelSelect(1)}>1</button>
-                                <button className={"btn btn-primary"} onClick={() => props.onLevelSelect(2)}>2</button>
-                                <button className={"btn btn-primary"} onClick={() => props.onLevelSelect(3)}>3</button>
+                                <button className={"btn btn-primary"} onClick={() => props.onLevelSelect(7)}>7</button>
+                                <button className={"btn btn-primary"} onClick={() => props.onLevelSelect(8)}>8</button>
+                                <button className={"btn btn-primary"} onClick={() => props.onLevelSelect(9)}>9</button>
                             </div>
                         </div>
                     </div>
@@ -74,9 +74,9 @@ function LevelSelection(props) {
                         <div id="panelsStayOpen-collapseFour" className="accordion-collapse collapse show"
                              aria-labelledby="panelsStayOpen-headingFour">
                             <div className="accordion-body">
-                                <button className={"btn btn-primary"} onClick={() => props.onLevelSelect(1)}>1</button>
-                                <button className={"btn btn-primary"} onClick={() => props.onLevelSelect(2)}>2</button>
-                                <button className={"btn btn-primary"} onClick={() => props.onLevelSelect(3)}>3</button>
+                                <button className={"btn btn-primary"} onClick={() => props.onLevelSelect(10)}>10</button>
+                                <button className={"btn btn-primary"} onClick={() => props.onLevelSelect(11)}>11</button>
+                                <button className={"btn btn-primary"} onClick={() => props.onLevelSelect(12)}>12</button>
                             </div>
                         </div>
                     </div>
