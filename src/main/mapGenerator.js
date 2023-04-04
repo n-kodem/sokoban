@@ -245,11 +245,12 @@ class Map extends React.Component {
         const table = data.map.map((row,index) => {
             return <tr key={100+index}>{
                 row.toString().split('').map((cell,index) => {
-                    return <td style={
+                    let x = (<td style={
                         {
-                            backgroundColor: data.textures[data.tiles[cell]]
+                            backgroundImage: `url(/textures/${data.textures[data.tiles[cell]]})`
                         }
-                    } key={index}></td>;
+                    } key={index}></td>)
+                    return x;
                 })
             }</tr>;
         });
