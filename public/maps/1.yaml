@@ -40,15 +40,15 @@ textures: {
   wall: "wall_tile.png",
   floor: "snow_tile.png",
   stone: "ice_tile.png",
-  button: "water_tile.png",
-  clicked_button: "ice_water_tile.png",
+  button: "button.png",
+  clicked_button: "clicked_button.png",
   player: "player.png",
-  player_on_button: "player.png",
+  player_on_button: "player_on_btn.png",
   player_on_bridge: "player_ice.png",
-  player_on_treasure: "player.png",
+  player_on_treasure: "player_on_tre.png",
   mud: "water_tile.png",
   bridge: "ice_water_tile.png",
-  treasure: "player.png"
+  treasure: "treasure.png"
 }
 tasks: [
   "buttons",

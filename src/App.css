@@ -1,12 +1,12 @@
 .App {
   background: rgba(0, 89, 255, 0.78);
   height: fit-content;
-  width: max(600px, 20vh);
+  width: max(600px, fit-content);
   border-radius: 1ch;
 }
 td{
-  width: 32px !important;
-    height: 32px !important;
+  width: 64px !important;
+    height: 64px !important;
   display: inline-block;
 }
 .btn-settings{

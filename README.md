@@ -1,5 +1,5 @@
-# Projekt gry Sokoban
-## Penguban
+# Projekt gry Sokoban (Penguban)
+
 
 ### Opis gry
 
