@@ -6,12 +6,10 @@
     "index.html": "./index.html",
     "main.6e3051d1.css.map": "./static/css/main.6e3051d1.css.map",
     "main.90551885.js.map": "./static/js/main.90551885.js.map",
-    "787.fde8e12d.chunk.js.map": "./static/js/787.fde8e12d.chunk.js.map",
-    "button.png": "./textures/button.png"
+    "787.fde8e12d.chunk.js.map": "./static/js/787.fde8e12d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.6e3051d1.css",
-    "static/js/main.90551885.js",
-    "textures/*"
+    "static/js/main.90551885.js"
   ]
 }
