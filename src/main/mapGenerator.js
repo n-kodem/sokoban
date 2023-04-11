@@ -245,12 +245,12 @@ class Map extends React.Component {
         const table = data.map.map((row,index) => {
             return <tr key={100+index}>{
                 row.toString().split('').map((cell,index) => {
-
+                    console.log(data.textures[data.tiles[cell]])
                     // render element as image or color
                     let x = (['.png', '.jpg'].some(imageType => data.textures[data.tiles[cell]].toString().endsWith(imageType)))?
                         (<td style={
                         {
-                            backgroundImage: `url(/textures/${data.textures[data.tiles[cell]]})`,
+                            backgroundImage: `url(./textures/${data.textures[data.tiles[cell]]})`,
                             backgroundSize: "cover"
                         }
                     } key={index}></td>)
@@ -278,7 +278,9 @@ class Map extends React.Component {
                 </table>
                 {this.checkIfLevelFinished() && (
                     <div><h1>Level Finished!</h1>
-                        <button className={"btn btn-primary"} onClick={()=>{this.setState({ id: this.state.id+1,levelFinished:false });this.loadData(this.state.id+1)}}>Next Level</button>
+                        {this.state.id!==13 && (
+                            <button className={"btn btn-primary"} onClick={()=>{this.setState({ id: this.state.id+1,levelFinished:false });this.loadData(this.state.id+1)}}>Next Level</button>
+                        )}
                     </div>
                 )}
             </div>

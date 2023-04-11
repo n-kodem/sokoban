@@ -77,6 +77,7 @@ function LevelSelection(props) {
                                 <button className={"btn btn-primary"} onClick={() => props.onLevelSelect(10)}>10</button>
                                 <button className={"btn btn-primary"} onClick={() => props.onLevelSelect(11)}>11</button>
                                 <button className={"btn btn-primary"} onClick={() => props.onLevelSelect(12)}>12</button>
+                                <button className={"btn btn-primary"} onClick={() => props.onLevelSelect(13)}>13</button>
                             </div>
                         </div>
                     </div>

@@ -1,4 +1,4 @@
-name: "Mapa 1"
+name: "Mapa 13"
 tiles: {
   W: "wall",
   F: "floor",
@@ -14,13 +14,10 @@ tiles: {
   T: "treasure"
 }
 map: [
-  "WWWW",
-  "WFBW",
-  "WFFWWW",
-  "WCPFFW",
-  "WFFSFW",
-  "WFTWWW",
-  "WWWW"
+  "WWWWWWWWWW",
+  "WFFWFSMFFW",
+  "WPSMFWFFTW",
+  "WWWWWWWWWW"
 ]
 #textures: {
 #  wall: "black",
@@ -51,6 +48,5 @@ textures: {
   treasure: "treasure.png"
 }
 tasks: [
-  "buttons",
   "treasure"
 ]
