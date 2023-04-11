@@ -16,19 +16,19 @@ Na każdej mapie są maksymalnie 2 cele: umieszczenie wszystkich kamieni na przy
 - Podłoga: zwykłe pole, przez które można się poruszać.
 - Kamień: przedmiot, który gracz musi przesunąć na odpowiednie pole.
 - Przycisk: pole, na którym należy postawić kamień, aby otworzyć drzwi lub przejść do kolejnego poziomu.
-- Pole, na którym należy postawić kamień, żeby po nim przejść: pole, na którym gracz musi umieścić kamień, aby otworzyć drogę.
--Pole, do którego należy dotrzeć: specjalne pole, do którego gracz musi dotrzeć, aby ukończyć poziom.
+- Pole z wodą, pole na którym gracz musi umieścić kamień, aby otworzyć drogę.
+- Pole ze skarbem, do którego gracz musi dotrzeć, aby ukończyć poziom.
 
 ### Funkcjonalności:
 
-- Wybór poziomu trudności: Beginner, Intermediate, Advanced, Expert.
-- 12 map podzielonych na 4 poziomy trudności.
-- Maksymalnie 2 cele na każdej mapie.
-- Opcja ustawień, w której można ustawić poziom głośności dźwięku.
-- Sterowanie postacią za pomocą strzałek na klawiaturze.
-- Przesuwanie kamieni na planszy.
-- Sprawdzanie, czy gracz osiągnął cel i przejście do kolejnego poziomu.
-- Odtwarzanie dźwięków podczas grania.
+- [x] Wybór poziomu trudności: Beginner, Intermediate, Advanced, Expert.
+- [x] 12 map podzielonych na 4 poziomy trudności.
+- [x] Maksymalnie 2 cele na każdej mapie.
+- [x] Opcja ustawień, w której można ustawić poziom głośności dźwięku.
+- [x] Sterowanie postacią za pomocą strzałek na klawiaturze.
+- [x] Przesuwanie kamieni na planszy.
+- [x] Sprawdzanie, czy gracz osiągnął cel i przejście do kolejnego poziomu.
+- [ ] Odtwarzanie dźwięków podczas grania.
 
 ### Algorytm gry:
 
@@ -36,7 +36,7 @@ Na każdej mapie są maksymalnie 2 cele: umieszczenie wszystkich kamieni na przy
 2. Gracz przesuwa kamienie na planszy, aby umieścić je na odpowiednich przyciskach lub dotrzeć do specjalnego pola.
 3. Gra sprawdza, czy gracz osiągnął cel (umieścił wszystkie kamienie na przyciskach lub dotarł do specjalnego pola).
 4. Jeśli cel został osiągnięty, gra przechodzi do kolejnego poziomu.
-5. Odtwarzane są dźwięki podczas grania.
+5. Odtwarzane są dźwi️ęki podczas grania.
 
 ### Testowanie gry:
 
