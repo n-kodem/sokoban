@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/sokoban/static/css/main.6e3051d1.css",
-    "main.js": "/sokoban/static/js/main.ccf71f16.js",
+    "main.js": "/sokoban/static/js/main.7185c398.js",
     "static/js/787.fde8e12d.chunk.js": "/sokoban/static/js/787.fde8e12d.chunk.js",
     "index.html": "/sokoban/index.html",
     "main.6e3051d1.css.map": "/sokoban/static/css/main.6e3051d1.css.map",
-    "main.ccf71f16.js.map": "/sokoban/static/js/main.ccf71f16.js.map",
+    "main.7185c398.js.map": "/sokoban/static/js/main.7185c398.js.map",
     "787.fde8e12d.chunk.js.map": "/sokoban/static/js/787.fde8e12d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.6e3051d1.css",
-    "static/js/main.ccf71f16.js"
+    "static/js/main.7185c398.js"
   ]
 }

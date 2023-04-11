@@ -1,0 +1,52 @@
+name: "Mapa 13"
+tiles: {
+  W: "wall",
+  F: "floor",
+  P: "player",
+  M: "mud",
+  R: "bridge",
+  S: "stone",
+  B: "button",
+  C: "clicked_button",
+  A: "player_on_button",
+  Z: "player_on_bridge",
+  O: "player_on_treasure",
+  T: "treasure"
+}
+map: [
+  "WWWWWWWWWW",
+  "WFFWFSMFFW",
+  "WPSMFWFFTW",
+  "WWWWWWWWWW"
+]
+#textures: {
+#  wall: "black",
+#  floor: "gray",
+#  stone: "lightblue",
+#  button: "darkgray",
+#  clicked_button: "cyan",
+#  player: "red",
+#  player_on_button: "darkred",
+#  player_on_bridge: "azure",
+#  player_on_treasure: "gold",
+#  mud: "blue",
+#  bridge: "aqua",
+#  treasure: "yellow"
+#}
+textures: {
+  wall: "wall_tile.png",
+  floor: "snow_tile.png",
+  stone: "ice_tile.png",
+  button: "button.png",
+  clicked_button: "clicked_button.png",
+  player: "player.png",
+  player_on_button: "player_on_btn.png",
+  player_on_bridge: "player_ice.png",
+  player_on_treasure: "player_on_tre.png",
+  mud: "water_tile.png",
+  bridge: "ice_water_tile.png",
+  treasure: "treasure.png"
+}
+tasks: [
+  "treasure"
+]
